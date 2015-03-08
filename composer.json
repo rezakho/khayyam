@@ -1,0 +1,42 @@
+{
+	"name": "rezakho/khayyam",
+	"type": "library",
+	"description": "A simple API extension for Jalali (Shamsi) DateTime.",
+	"keywords": [
+		"jalali date",
+		"jalali time",
+		"jalali DateTime"
+	],
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Reza Khodadadi",
+			"email": "rezakho@gmail.com",
+			"role": "Founder"
+		}
+	],
+	"autoload": {
+		"files": [
+		],
+		"psr-4": {
+			"Qlake\\": "src/Qlake/"
+		}
+	},
+	"require": {
+		"php": ">=5.4.0",
+		"ext-mbstring": "*",
+		"sallar/jdatetime": "dev-master"
+	},
+	"autoload": {
+		"files": [
+		],
+		"psr-4": {
+			"Khayyam\\": "src"
+		}
+	},
+	"extra": {
+		"branch-alias": {
+			"dev-master": "0.1-dev"
+		}
+	}
+}
