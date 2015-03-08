@@ -18,13 +18,14 @@
 	"require": {
 		"php": ">=5.4.0",
 		"ext-mbstring": "*",
-		"sallar/jdatetime": "dev-master"
+		"sallar/jdatetime": "dev-master",
+		"nesbot/carbon": "~1.16.0"
 	},
 	"autoload": {
 		"files": [
 		],
 		"psr-4": {
-			"Khayyam\\": "src"
+			"Khayyam\\": "src/Khayyam/"
 		}
 	},
 	"extra": {
