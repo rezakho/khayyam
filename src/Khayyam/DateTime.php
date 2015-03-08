@@ -1,5 +1,7 @@
 <?php
 
+namespace Khayyam;
+
 class DateTime
 {
 	public function __construct($time = "now" ,DateTimeZone $timezone = null)
