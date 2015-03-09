@@ -10,6 +10,7 @@
 		"shamsi time",
 		"shamsi DateTime",
 		"jalali(shamsi)/Gregorian DateTime",
+		"jalali(shamsi)/Gregorian Carbon"
 	],
 	"license": "MIT",
 	"authors": [
