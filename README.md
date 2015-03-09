@@ -1,4 +1,4 @@
-## khayyam
+## Khayyam
 A Simple PHP API Extension For Jalali(Shamsi)/Gregorian Calendar Based On Carbon Extension
 
 [![Build Status](https://travis-ci.org/rezakho/khayyam.svg)](https://travis-ci.org/rezakho/khayyam)
@@ -7,7 +7,7 @@ A Simple PHP API Extension For Jalali(Shamsi)/Gregorian Calendar Based On Carbon
 [![Minimum PHP Version](http://img.shields.io/badge/php-%3E%3D%205.4-8892BF.svg)](https://php.net/)
 [![License](https://img.shields.io/packagist/l/rezakho/khayyam.svg)](https://packagist.org/packages/rezakho/khayyam)
 
-> **Note:** This repository is not stable yet! please be careful for using.
+> **Note:** This repository is not stable yet, please be careful for using!
 
 ## Simple Usage
 
@@ -25,7 +25,7 @@ if (Khayyam::now()->isWeekend())
 }
 
 //
-echo Khayyam::now()->subMinutes(2)->diffForHumans(); // '2 دقیقه پیش'
+echo Khayyam::now()->subMinutes(2)->diffForHumans(); // '۲ دقیقه پیش'
 ```
 
 ## Installation
