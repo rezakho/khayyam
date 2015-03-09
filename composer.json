@@ -9,8 +9,8 @@
 		"shamsi date",
 		"shamsi time",
 		"shamsi DateTime",
-		"jalali(shamsi)/Gregorian DateTime",
-		"jalali(shamsi)/Gregorian Carbon"
+		"jalali Carbon",
+		"shamsi Carbon"
 	],
 	"license": "MIT",
 	"authors": [
