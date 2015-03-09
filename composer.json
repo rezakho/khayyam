@@ -1,11 +1,15 @@
 {
 	"name": "rezakho/khayyam",
 	"type": "library",
-	"description": "A simple API extension for Jalali (Shamsi) DateTime.",
+	"description": "A Simple PHP API Extension For Jalali(Shamsi)/Gregorian Calendar Based On Carbon Extension",
 	"keywords": [
 		"jalali date",
 		"jalali time",
-		"jalali DateTime"
+		"jalali DateTime",
+		"shamsi date",
+		"shamsi time",
+		"shamsi DateTime",
+		"jalali(shamsi)/Gregorian DateTime",
 	],
 	"license": "MIT",
 	"authors": [

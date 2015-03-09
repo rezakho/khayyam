@@ -1,5 +1,5 @@
 ## khayyam
-A Simple PHP API Extension For Jalali/Gregorian Calendar Based On Carbon Extension
+A Simple PHP API Extension For Jalali(Shamsi)/Gregorian Calendar Based On Carbon Extension
 
 [![Build Status](https://travis-ci.org/rezakho/khayyam.svg)](https://travis-ci.org/rezakho/khayyam)
 [![Latest Stable Version](https://img.shields.io/packagist/v/rezakho/khayyam.svg?label=release)](https://packagist.org/packages/rezakho/khayyam)
