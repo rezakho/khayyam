@@ -9,8 +9,6 @@ A Simple PHP API Extension For Jalali(Shamsi)/Gregorian Calendar Based On Carbon
 
 > **Note:** This repository is not stable yet, please be careful for using!
 
-## Simple Usage
-
 ```php
 //
 $tomorrow = Khayyam::now()->addDay();
