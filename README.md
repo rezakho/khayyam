@@ -7,7 +7,7 @@ A Simple PHP API Extension For Jalali(Shamsi)/Gregorian Calendar Based On Carbon
 [![Minimum PHP Version](http://img.shields.io/badge/php-%3E%3D%205.4-8892BF.svg)](https://php.net/)
 [![License](https://img.shields.io/packagist/l/rezakho/khayyam.svg)](https://packagist.org/packages/rezakho/khayyam)
 
-> **Note:** This repository is not stable yet, please be careful for using!
+> **Note:** This Repository Is Not Stable Yet, Don't Use Dev Sources.
 
 ```php
 //
