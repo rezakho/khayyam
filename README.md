@@ -9,6 +9,25 @@ A Simple PHP API Extension For Jalali(Shamsi)/Gregorian Calendar Based On Carbon
 
 > **Note:** This repository is not stable yet! please be careful for using.
 
+## Simple Usage
+
+```php
+//
+$tomorrow = Khayyam::now()->addDay();
+
+//
+$lastWeek = Khayyam::now()->subWeek();
+
+//
+if (Khayyam::now()->isWeekend())
+{
+	echo 'Go To Tour!';
+}
+
+//
+echo Khayyam::now()->subMinutes(2)->diffForHumans(); // '2 دقیقه پیش'
+```
+
 ## Installation
 
 ### With Composer
