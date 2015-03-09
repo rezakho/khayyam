@@ -25,7 +25,7 @@ if (Khayyam::now()->isWeekend())
 }
 
 //
-echo Khayyam::now()->subMinutes(2)->diffForHumans(); // '۲ دقیقه پیش'
+echo Khayyam::now()->subMinutes(2)->diffForHumans(); // 'دقیقه پیش ۲'
 ```
 
 ## Installation
