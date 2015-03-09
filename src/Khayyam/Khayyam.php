@@ -11,18 +11,22 @@
 
 namespace Khayyam;
 
-use Closure;
-use DateTime;
-use DateTimeZone;
-use DateInterval;
-use DatePeriod;
-use InvalidArgumentException;
-use jDateTime as SallarDateTime;
+#use Closure;
+#use DateTime;
+#use DateTimeZone;
+#use DateInterval;
+#use DatePeriod;
+#use InvalidArgumentException;
+use Carbon\Carbon;
+use jDateTime;
 
 
-class Khayyam /*extends DateTime*/
+class Khayyam extends Carbon
 {
-	protected $calendar;
+	const IRAN_OFFICIAL_CALENDAR = 0;
+	const GREGORIAN_CALENDAR     = 1;
+
+	protected $calendar = IRAN_OFFICIAL_CALENDAR;
 #	/**
 #	 * The day constants
 #	 */
@@ -142,28 +146,28 @@ class Khayyam /*extends DateTime*/
 #	 * @param string			  $time
 #	 * @param DateTimeZone|string $tz
 #	 */
-	public function __construct($time = null, $tz = null)
-	{
-		// If the class has a test now set and we are trying to create a now()
-		// instance then override as required
-		if (static::hasTestNow() && (empty($time) || $time === 'now' || static::hasRelativeKeywords($time))) {
-			$testInstance = clone static::getTestNow();
-			if (static::hasRelativeKeywords($time)) {
-				$testInstance->modify($time);
-			}
-
-			//shift the time according to the given time zone
-			if ($tz !== NULL && $tz != static::getTestNow()->tz) {
-				$testInstance->setTimezone($tz);
-			} else {
-				$tz = $testInstance->tz;
-			}
-
-			$time = $testInstance->toDateTimeString();
-		}
-
-		parent::__construct($time, static::safeCreateDateTimeZone($tz));
-	}
+#	public function __construct($time = null, $tz = null)
+#	{
+#		// If the class has a test now set and we are trying to create a now()
+#		// instance then override as required
+#		if (static::hasTestNow() && (empty($time) || $time === 'now' || static::hasRelativeKeywords($time))) {
+#			$testInstance = clone static::getTestNow();
+#			if (static::hasRelativeKeywords($time)) {
+#				$testInstance->modify($time);
+#			}
+#
+#			//shift the time according to the given time zone
+#			if ($tz !== NULL && $tz != static::getTestNow()->tz) {
+#				$testInstance->setTimezone($tz);
+#			} else {
+#				$tz = $testInstance->tz;
+#			}
+#
+#			$time = $testInstance->toDateTimeString();
+#		}
+#
+#		parent::__construct($time, static::safeCreateDateTimeZone($tz));
+#	}
 
 #	/**
 #	 * Create a Carbon instance from a DateTime one
@@ -282,23 +286,23 @@ class Khayyam /*extends DateTime*/
 #	 *
 #	 * @return static
 #	 */
-	public static function create($year = null, $month = null, $day = null, $hour = null, $minute = null, $second = null, $tz = null)
-	{
-		$year = ($year === null) ? date('Y') : $year;
-		$month = ($month === null) ? date('n') : $month;
-		$day = ($day === null) ? date('j') : $day;
-
-		if ($hour === null) {
-			$hour = date('G');
-			$minute = ($minute === null) ? date('i') : $minute;
-			$second = ($second === null) ? date('s') : $second;
-		} else {
-			$minute = ($minute === null) ? 0 : $minute;
-			$second = ($second === null) ? 0 : $second;
-		}
-
-		return static::createFromFormat('Y-n-j G:i:s', sprintf('%s-%s-%s %s:%02s:%02s', $year, $month, $day, $hour, $minute, $second), $tz);
-	}
+#	public static function create($year = null, $month = null, $day = null, $hour = null, $minute = null, $second = null, $tz = null)
+#	{
+#		$year = ($year === null) ? date('Y') : $year;
+#		$month = ($month === null) ? date('n') : $month;
+#		$day = ($day === null) ? date('j') : $day;
+#
+#		if ($hour === null) {
+#			$hour = date('G');
+#			$minute = ($minute === null) ? date('i') : $minute;
+#			$second = ($second === null) ? date('s') : $second;
+#		} else {
+#			$minute = ($minute === null) ? 0 : $minute;
+#			$second = ($second === null) ? 0 : $second;
+#		}
+#
+#		return static::createFromFormat('Y-n-j G:i:s', sprintf('%s-%s-%s %s:%02s:%02s', $year, $month, $day, $hour, $minute, $second), $tz);
+#	}
 
 #	/**
 #	 * Create a Carbon instance from just a date. The time portion is set to now.
@@ -2234,4 +2238,14 @@ class Khayyam /*extends DateTime*/
 #	{
 #		return $this->format('md') === $dt->format('md');
 #	}
+
+
+	///////////////////////////////////////////////////////////////////
+	//////////////////////////// Overrides ////////////////////////////
+	///////////////////////////////////////////////////////////////////
+
+	public function format($format)
+	{
+		return jDateTime::date($format, $stamp = $this->getTimestamp(), $convert = false, $jalali = true, $this->getTimezone()->getName());
+	}
 }

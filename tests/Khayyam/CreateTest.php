@@ -27,8 +27,8 @@ class CreateTest extends TestFixture
 
 	public function testCreateWithYear()
 	{
-		$d = Khayyam::create(2012);
-		$this->assertSame(2012, $d->year);
+		$d = Khayyam::create(1394);
+		$this->assertSame(1394, $d->year);
 	}
 
 	public function testCreateWithInvalidYear()
@@ -51,8 +51,8 @@ class CreateTest extends TestFixture
 
 	public function testCreateMonthWraps()
 	{
-		$d = Khayyam::create(2011, 0, 1, 0, 0, 0);
-		$this->assertKhayyam($d, 2010, 12, 1, 0, 0, 0);
+		$d = Khayyam::create(1394, 0, 1, 0, 0, 0);
+		$this->assertKhayyam($d, 1393, 12, 1, 0, 0, 0);
 	}
 
 	public function testCreateWithDay()
@@ -68,8 +68,8 @@ class CreateTest extends TestFixture
 	}
 	public function testCreateDayWraps()
 	{
-		$d = Khayyam::create(2011, 1, 40, 0, 0, 0);
-		$this->assertKhayyam($d, 2011, 2, 9, 0, 0, 0);
+		$d = Khayyam::create(1394, 1, 40, 0, 0, 0);
+		$this->assertKhayyam($d, 1394, 2, 9, 0, 0, 0);
 	}
 
 	public function testCreateWithHourAndDefaultMinSecToZero()
@@ -88,8 +88,8 @@ class CreateTest extends TestFixture
 
 	public function testCreateHourWraps()
 	{
-		$d = Khayyam::create(2011, 1, 1, 24, 0, 0);
-		$this->assertKhayyam($d, 2011, 1, 2, 0, 0, 0);
+		$d = Khayyam::create(1394, 1, 1, 24, 0, 0);
+		$this->assertKhayyam($d, 1394, 1, 2, 0, 0, 0);
 	}
 
 	public function testCreateWithMinute()
@@ -101,12 +101,12 @@ class CreateTest extends TestFixture
 	public function testCreateWithInvalidMinute()
 	{
 		$this->setExpectedException('InvalidArgumentException');
-		$d = Khayyam::create(2011, 1, 1, 0, -2, 0);
+		$d = Khayyam::create(1394, 1, 1, 0, -2, 0);
 	}
 	public function testCreateMinuteWraps()
 	{
-		$d = Khayyam::create(2011, 1, 1, 0, 62, 0);
-		$this->assertKhayyam($d, 2011, 1, 1, 1, 2, 0);
+		$d = Khayyam::create(1394, 1, 1, 0, 62, 0);
+		$this->assertKhayyam($d, 1394, 1, 1, 1, 2, 0);
 	}
 
 	public function testCreateWithSecond()
@@ -122,21 +122,21 @@ class CreateTest extends TestFixture
 	}
 	public function testCreateSecondsWrap()
 	{
-		$d = Khayyam::create(2012, 1, 1, 0, 0, 61);
-		$this->assertKhayyam($d, 2012, 1, 1, 0, 1, 1);
+		$d = Khayyam::create(1394, 1, 1, 0, 0, 61);
+		$this->assertKhayyam($d, 1394, 1, 1, 0, 1, 1);
 	}
 
 	public function testCreateWithDateTimeZone()
 	{
-		$d = Khayyam::create(2012, 1, 1, 0, 0, 0, new \DateTimeZone('Europe/London'));
-		$this->assertKhayyam($d, 2012, 1, 1, 0, 0, 0);
-		$this->assertSame('Europe/London', $d->tzName);
+		$d = Khayyam::create(1394, 1, 1, 0, 0, 0, new \DateTimeZone('Asia/Tehran'));
+		$this->assertKhayyam($d, 1394, 1, 1, 0, 0, 0);
+		$this->assertSame('Asia/Tehran', $d->tzName);
 	}
 
 	public function testCreateWithTimeZoneString()
 	{
-		$d = Khayyam::create(2012, 1, 1, 0, 0, 0, 'Europe/London');
+		$d = Khayyam::create(2012, 1, 1, 0, 0, 0, 'Asia/Tehran');
 		$this->assertKhayyam($d, 2012, 1, 1, 0, 0, 0);
-		$this->assertSame('Europe/London', $d->tzName);
+		$this->assertSame('Asia/Tehran', $d->tzName);
 	}
 }

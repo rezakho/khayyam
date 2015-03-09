@@ -2,35 +2,94 @@
 
 require __DIR__.'/vendor/autoload.php';
 
-$ts = jDateTime::mktime(0, 0, 0, 1, 1, 1394, $jalali = true, $timezone = 'Asia/Tehran');
-
-echo  jDateTime::date('Y:m:d H:i:s', $ts, $convert = false, $jalali = true, 'Asia/Tehran');
-
-for ($i=1385; $i < 1599; $i++)
-{
-	$ts = jDateTime::mktime(10, 10, 10, 10, 10, $i, $jalali = false, $timezone = 'Asia/Tehran');
-
-	$isLeap = jDateTime::date('L', $ts, $convert = false, $jalali = false, 'Asia/Tehran');
-
-	echo $i . $isLeap . ($isLeap ==1 ? 'leap' : '') . '<br/>';
-}
-
-echo time();exit;
-
-print_r(date_parse("1393-10-10 12:12:12 +1 year - 1 month +1.5 second"));exit;
+header('Content-Type: text/plain; charset=utf-8');
 
 
+   
+    $date=new DateTime();
+    $date->setDate(2015,02,28);
+   
+    function addMonths($date,$months){
+        
+        $init=clone $date;
+        $modifier=$months.' months';
+        $back_modifier =-$months.' months';
+       
+        $date->modify($modifier);
+        $back_to_init= clone $date;
+        $back_to_init->modify($back_modifier);
+       //return;
+        while($init->format('m')!=$back_to_init->format('m')){
+        $date->modify('-1 day')    ;
+        $back_to_init= clone $date;
+        $back_to_init->modify($back_modifier);   
+        }
+       
+        /*
+        if($months<0&&$date->format('m')>$init->format('m'))
+        while($date->format('m')-12-$init->format('m')!=$months%12)
+        $date->modify('-1 day');
+        else
+        if($months>0&&$date->format('m')<$init->format('m'))
+        while($date->format('m')+12-$init->format('m')!=$months%12)
+        $date->modify('-1 day');
+        else
+        while($date->format('m')-$init->format('m')!=$months%12)
+        $date->modify('-1 day');
+        */
+       //echo 'sdfsdsd';
+    }
+    
+    function addYears($date,$years){
+       
+        $init=clone $date;
+        $modifier=$years.' years';
+        $date->modify($modifier);
+       
+        while($date->format('m')!=$init->format('m'))
+        $date->modify('-1 day');
+       
 
-$d = new DateTime;
+       
+    }
+   
+   
+   
+    addMonths($date,1);
+     //addYears($date,3);
+  
+   
+    //echo $date->format('m j,Y');
+     
 
-var_dump($d->format('Y-m-d H:i:s'));
-var_dump($d->getTimestamp());
+     //exit;
+//echo time();exit;
+
+
+print_r(Khayyam\Khayyam::now()->toDateTimeString());
+echo "\n";
+print_r(Khayyam\Khayyam::createFromDate(1393, 5, 21)->age);exit;
+print_r(date_parse("@1711005151058451"));exit;
+
+//array(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
 
 date_default_timezone_set('Asia/Tehran');
+/*
 $d = new \Khayyam\DateTime;
+echo ($d->format('l Y-m-d H:i:s')) . PHP_EOL;
+echo ($d->getTimestamp()) . PHP_EOL;
 
-var_dump($d->format('Y-m-d H:i:s'));
-var_dump($d->getTimestamp());
+$d = new \Khayyam\DateTime;
+echo ($d->modify('12 day')->format('l Y-m-d H:i:s')) . PHP_EOL;
+echo ($d->getTimestamp()) . PHP_EOL;
+*/
+$d = new DateTime('2015-01-31');
+echo ($d->format('Y-m-d H:i:s')) . PHP_EOL;
+echo ($d->getTimestamp()) . PHP_EOL;
+
+//$d = new DateTime();
+echo ($d->modify('2 month')->format('Y-m-d H:i:s')) . PHP_EOL;
+echo ($d->getTimestamp()) . PHP_EOL;
 
 
 
