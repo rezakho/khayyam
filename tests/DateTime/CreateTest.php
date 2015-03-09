@@ -19,4 +19,16 @@ class CreateTest extends TestFixture
 		$this->assertTrue($d instanceof DateTime);
 	}
 
+
+
+	public function testSetTimeZoneInConstructer()
+	{
+		$tz =  new DateTimeZone('Asia/Tehran');
+
+		$d = new DateTime(null, $tz);
+
+		$this->assertSame($d->getTimezone(), $tz);
+	}
+
+
 }
