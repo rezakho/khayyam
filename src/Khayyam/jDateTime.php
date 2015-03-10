@@ -41,6 +41,12 @@
  * @see        DateTime
  * @version    2.2.0
  */
+
+namespace khayyam;
+
+use DateTime;
+use DateTimeZone;
+
 class jDateTime
 {
 
