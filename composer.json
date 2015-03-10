@@ -23,7 +23,6 @@
 	"require": {
 		"php": ">=5.4.0",
 		"ext-mbstring": "*",
-		"sallar/jdatetime": "dev-master",
 		"nesbot/carbon": "~1.16.0"
 	},
 	"autoload": {
@@ -37,6 +36,5 @@
 		"branch-alias": {
 			"dev-master": "0.1.x-dev"
 		}
-	},
-	"minimum-stability": "dev"
+	}
 }
