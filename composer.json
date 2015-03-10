@@ -23,7 +23,7 @@
 	"require": {
 		"php": ">=5.4.0",
 		"ext-mbstring": "*",
-		"sallar/jdatetime": "dev-master",
+		"sallar/jdatetime": "dev-master@dev",
 		"nesbot/carbon": "~1.16.0"
 	},
 	"autoload": {
