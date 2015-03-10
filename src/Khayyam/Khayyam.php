@@ -9,7 +9,6 @@
 namespace Khayyam;
 
 use Carbon\Carbon;
-use jDateTime;
 
 class Khayyam extends Carbon
 {
