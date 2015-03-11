@@ -21,9 +21,9 @@ class NowAndOtherStaticHelpersTest extends TestFixture
 
 	public function testNowWithTimezone()
 	{
-		$dt = Khayyam::now('Europe/London');
+		$dt = Khayyam::now('Asia/Tehran');
 		$this->assertSame(time(), $dt->timestamp);
-		$this->assertSame('Europe/London', $dt->tzName);
+		$this->assertSame('Asia/Tehran', $dt->tzName);
 	}
 
 	public function testToday()
@@ -34,8 +34,8 @@ class NowAndOtherStaticHelpersTest extends TestFixture
 
 	public function testTodayWithTimezone()
 	{
-		$dt = Khayyam::today('Europe/London');
-		$dt2 = new \DateTime('now', new \DateTimeZone('Europe/London'));
+		$dt = Khayyam::today('Asia/Tehran');
+		$dt2 = new \DateTime('now', new \DateTimeZone('Asia/Tehran'));
 		$this->assertSame($dt2->format('Y-m-d 00:00:00'), $dt->toDateTimeString());
 	}
 
@@ -48,8 +48,8 @@ class NowAndOtherStaticHelpersTest extends TestFixture
 
 	public function testTomorrowWithTimezone()
 	{
-		$dt = Khayyam::tomorrow('Europe/London');
-		$dt2 = new \DateTime('tomorrow', new \DateTimeZone('Europe/London'));
+		$dt = Khayyam::tomorrow('Asia/Tehran');
+		$dt2 = new \DateTime('tomorrow', new \DateTimeZone('Asia/Tehran'));
 		$this->assertSame($dt2->format('Y-m-d 00:00:00'), $dt->toDateTimeString());
 	}
 
@@ -62,8 +62,8 @@ class NowAndOtherStaticHelpersTest extends TestFixture
 
 	public function testYesterdayWithTimezone()
 	{
-		$dt = Khayyam::yesterday('Europe/London');
-		$dt2 = new \DateTime('yesterday', new \DateTimeZone('Europe/London'));
+		$dt = Khayyam::yesterday('Asia/Tehran');
+		$dt2 = new \DateTime('yesterday', new \DateTimeZone('Asia/Tehran'));
 		$this->assertSame($dt2->format('Y-m-d 00:00:00'), $dt->toDateTimeString());
 	}
 

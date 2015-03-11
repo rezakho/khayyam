@@ -21,14 +21,14 @@ class CreateFromDateTest extends TestFixture
 
 	public function testCreateFromDate()
 	{
-		$d = Khayyam::createFromDate(1975, 5, 21);
-		$this->assertKhayyam($d, 1975, 5, 21);
+		$d = Khayyam::createFromDate(1394, 5, 21);
+		$this->assertKhayyam($d, 1394, 5, 21);
 	}
 
 	public function testCreateFromDateWithYear()
 	{
-		$d = Khayyam::createFromDate(1975);
-		$this->assertSame(1975, $d->year);
+		$d = Khayyam::createFromDate(1394);
+		$this->assertSame(1394, $d->year);
 	}
 
 	public function testCreateFromDateWithMonth()
@@ -45,15 +45,15 @@ class CreateFromDateTest extends TestFixture
 
 	public function testCreateFromDateWithTimezone()
 	{
-		$d = Khayyam::createFromDate(1975, 5, 21, 'Europe/London');
-		$this->assertKhayyam($d, 1975, 5, 21);
-		$this->assertSame('Europe/London', $d->tzName);
+		$d = Khayyam::createFromDate(1394, 5, 21, 'Asia/Tehran');
+		$this->assertKhayyam($d, 1394, 5, 21);
+		$this->assertSame('Asia/Tehran', $d->tzName);
 	}
 
 	public function testCreateFromDateWithDateTimeZone()
 	{
-		$d = Khayyam::createFromDate(1975, 5, 21, new \DateTimeZone('Europe/London'));
-		$this->assertKhayyam($d, 1975, 5, 21);
-		$this->assertSame('Europe/London', $d->tzName);
+		$d = Khayyam::createFromDate(1394, 5, 21, new \DateTimeZone('Asia/Tehran'));
+		$this->assertKhayyam($d, 1394, 5, 21);
+		$this->assertSame('Asia/Tehran', $d->tzName);
 	}
 }
