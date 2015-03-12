@@ -268,7 +268,7 @@ class DateTime extends PhpDateTime
 		$second = (int)$relative['second'];
 
 		$ts += $year * 365 * 24 * 60 * 60; 
-		$ts += $month * 31 * 24 * 60 * 60; 
+		$ts += $month * 30 * 24 * 60 * 60; 
 		$ts += $day * 24 * 60 * 60; 
 		$ts += $hour * 60 * 60; 
 		$ts += $minute * 60; 

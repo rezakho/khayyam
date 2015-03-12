@@ -7,13 +7,13 @@ require 'jDateTime.php';
 
 header('Content-Type: text/plain; charset=utf-8');
 
-date_default_timezone_set('GMT');
+date_default_timezone_set('Asia/Tehran');
 
 
-$date = new Khayyam\DateTime();
-$date->modify('+20 hour')->modify('+41 hour');
+echo (new Khayyam\DateTime())
+    ->modify('+36 month')
+    ->format('Y-m-d H:i:s');
 
-echo $date->format('Y-m-d H:i:s');
 exit;
 
 
