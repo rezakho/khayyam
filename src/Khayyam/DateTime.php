@@ -72,7 +72,7 @@ class DateTime extends PhpDateTime
 		}
 		else
 		{
-			$timestamp = time();
+			$timestamp = $this->timestamp ?: time();
 		}
 		
 		if ($this->hasRelativeTime($parsed))
@@ -125,15 +125,15 @@ class DateTime extends PhpDateTime
 		$errors        = $dateInfo['errors'];
 		$is_localtime  = $dateInfo['is_localtime'];
 
-		$year = ($year === false) ? jdate('Y') : $year;
-		$month = ($month === false) ? jdate('n') : $month;
-		$day = ($day === false) ? jdate('j') : $day;
+		$year = ($year === false) ? \jDateTime::date('Y') : $year;
+		$month = ($month === false) ? \jDateTime::date('n') : $month;
+		$day = ($day === false) ? \jDateTime::date('j') : $day;
 
 		if ($hour === false)
 		{
-			$hour = jdate('G');
-			$minute = ($minute === false) ? jdate('i') : $minute;
-			$second = ($second === false) ? jdate('s') : $second;
+			$hour = \jDateTime::date('G');
+			$minute = ($minute === false) ? \jDateTime::date('i') : $minute;
+			$second = ($second === false) ? \jDateTime::date('s') : $second;
 		}
 		else
 		{
@@ -260,12 +260,12 @@ class DateTime extends PhpDateTime
 
 		$ts = 0;
 		
-		$year          = (int)$relative['year'];
-		$month         = (int)$relative['month'];
-		$day           = (int)$relative['day'];
-		$hour          = (int)$relative['hour'];
-		$minute        = (int)$relative['minute'];
-		$second        = (int)$relative['second'];
+		$year   = (int)$relative['year'];
+		$month  = (int)$relative['month'];
+		$day    = (int)$relative['day'];
+		$hour   = (int)$relative['hour'];
+		$minute = (int)$relative['minute'];
+		$second = (int)$relative['second'];
 
 		$ts += $year * 365 * 24 * 60 * 60; 
 		$ts += $month * 31 * 24 * 60 * 60; 

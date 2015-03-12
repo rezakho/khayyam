@@ -11,7 +11,7 @@ date_default_timezone_set('GMT');
 
 
 $date = new Khayyam\DateTime();
-$date->modify('+3 hour +30 minute');
+$date->modify('+20 hour')->modify('+41 hour');
 
 echo $date->format('Y-m-d H:i:s');
 exit;
