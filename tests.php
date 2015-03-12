@@ -1,8 +1,24 @@
 <?php
 
 require __DIR__.'/vendor/autoload.php';
+require 'jDateTime.php';
+
+
 
 header('Content-Type: text/plain; charset=utf-8');
+
+date_default_timezone_set('GMT');
+
+
+$date = new Khayyam\DateTime();
+$date->modify('+3 hour +30 minute');
+
+echo $date->format('Y-m-d H:i:s');
+exit;
+
+
+//print_r(date_parse('@1564165431'));exit;
+print_r(date_parse_from_format('Y-m-d i:s', '2290-02-31 00:12'));exit;
 
 
    
