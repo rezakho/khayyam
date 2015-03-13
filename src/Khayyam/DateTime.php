@@ -196,7 +196,7 @@ class DateTime extends PhpDateTime
 
 
 
-	public function setTimezone(DateTimeZone $timezone)
+	public function setTimezone($timezone)
 	{
 		$this->timezone = $timezone;
 
