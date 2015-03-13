@@ -64,7 +64,7 @@ class DateTime extends PhpDateTime
 
 		$parsed = date_parse($time);
 
-		$timestamp = 0;
+		$timestamp = $relativeTimestamp = 0;
 
 		if ($this->hasAnyTime($parsed))
 		{
