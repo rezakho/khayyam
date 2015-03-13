@@ -33,14 +33,14 @@ class DateTime extends PhpDateTime
 
 
 
-	/*public static function createFromFormat($format ,$time ,DateTimeZone $timezone = null)
+	public static function createFromFormat($format ,$time ,DateTimeZone $timezone = null)
 	{
 		$dateInfo = date_parse_from_format($format, $time);
 
 		$timestamp = static::parseJalaliDateInfoToUTCTimestamp($dateInfo);
 
 		return new static('@'.$timestamp, $timezone);
-	}*/
+	}
 
 
 
