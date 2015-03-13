@@ -33,7 +33,7 @@ class DateTime extends PhpDateTime
 
 
 
-	public static function createFromFormat($format ,$time ,DateTimeZone $timezone = null)
+	public static function createFromFormat($format ,$time ,$timezone = null)
 	{
 		$dateInfo = date_parse_from_format($format, $time);
 
@@ -68,7 +68,7 @@ class DateTime extends PhpDateTime
 
 		if ($this->hasAnyTime($parsed))
 		{
-			$timestamp = $this->parseJalaliDateInfoToUTCTimestamp($parsed);
+			$timestamp = static::parseJalaliDateInfoToUTCTimestamp($parsed);
 		}
 		else
 		{
@@ -110,7 +110,7 @@ class DateTime extends PhpDateTime
 
 
 
-	public function parseJalaliDateInfoToUTCTimestamp($dateInfo)
+	public static function parseJalaliDateInfoToUTCTimestamp($dateInfo)
 	{
 		$year          = $dateInfo['year'];
 		$month         = $dateInfo['month'];
