@@ -23,7 +23,8 @@
 	"require": {
 		"php": ">=5.4.0",
 		"ext-mbstring": "*",
-		"nesbot/carbon": "~1.16.0"
+		"nesbot/carbon": "~1.16.0",
+		"sallar/jdatetime": "dev-master"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "~4.0"
