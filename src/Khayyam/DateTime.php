@@ -38,7 +38,7 @@ class DateTime extends PhpDateTime
 
 
 
-	public static function createFromFormat($format ,$time, DateTimeZone $timezone = null)
+	public static function createFromFormat($format ,$time, $timezone = null)
 	{
 		$dateInfo = date_parse_from_format($format, $time);
 
