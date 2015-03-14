@@ -19,6 +19,11 @@ class DateTime extends PhpDateTime
 
 	public function __construct($time = "now", DateTimeZone $timezone = null)
 	{
+		if (!is_string($time))
+		{
+			throw new \InvalidArgumentException("DateTime::__construct() expects parameter 1 to be string, ". gettype($time) ." given", 1);
+		}
+
 		$this->modify($time);
 
 		$this->timezone = $timezone ?: new DateTimeZone(date_default_timezone_get());
@@ -125,15 +130,15 @@ class DateTime extends PhpDateTime
 		$errors        = $dateInfo['errors'];
 		$is_localtime  = $dateInfo['is_localtime'];
 
-		$year = ($year === false) ? \jDateTime::date('Y') : $year;
-		$month = ($month === false) ? \jDateTime::date('n') : $month;
-		$day = ($day === false) ? \jDateTime::date('j') : $day;
+		$year = ($year === false) ? static::date('Y') : $year;
+		$month = ($month === false) ? static::date('n') : $month;
+		$day = ($day === false) ? static::date('j') : $day;
 
 		if ($hour === false)
 		{
-			$hour = \jDateTime::date('G');
-			$minute = ($minute === false) ? \jDateTime::date('i') : $minute;
-			$second = ($second === false) ? \jDateTime::date('s') : $second;
+			$hour = static::date('G');
+			$minute = ($minute === false) ? static::date('i') : $minute;
+			$second = ($second === false) ? static::date('s') : $second;
 		}
 		else
 		{
@@ -221,7 +226,7 @@ class DateTime extends PhpDateTime
 
 	public function format($format)
 	{
-		return \jDateTime::date($format, $this->timestamp);
+		return static::date($format, $this->timestamp);
 	}
 
 
@@ -275,6 +280,16 @@ class DateTime extends PhpDateTime
 		$ts += $second * 1; 
 
 		return $ts;
+	}
+
+
+
+
+	public static function date($format, $timestamp = null)
+	{
+		$timestamp = $timestamp ?: time();
+
+		return \jDateTime::date($format, $timestamp, false, true);
 	}
 
 

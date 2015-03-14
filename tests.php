@@ -1,9 +1,6 @@
 <?php
 
-require 'src/Khayyam/DateTime.php';
-require 'src/Khayyam/Khayyam.php';
-require 'jDateTime.php';
-
+require __DIR__.'/vendor/autoload.php';
 
 
 header('Content-Type: text/plain; charset=utf-8');
@@ -14,6 +11,10 @@ date_default_timezone_set('Asia/Tehran');
 //echo (new Khayyam\DateTime())
     //->modify('+36 month')
 //    ->format('c');
+
+$d = new Khayyam\DateTime('1394');
+echo $d->format('Y');
+exit;
 
 echo Khayyam\Khayyam::now()->addDay()->format('Y-m-d');
 

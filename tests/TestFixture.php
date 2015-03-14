@@ -12,6 +12,7 @@
 require __DIR__.'/../vendor/autoload.php';
 
 use Khayyam\Khayyam;
+use Khayyam\DateTime;
 
 class TestFixture extends \PHPUnit_Framework_TestCase
 {
@@ -30,7 +31,7 @@ class TestFixture extends \PHPUnit_Framework_TestCase
 		date_default_timezone_set($this->saveTz);
 	}
 
-	protected function assertKhayyam(Khayyam $d, $year, $month, $day, $hour = null, $minute = null, $second = null)
+	protected function assertKhayyam(DateTime $d, $year, $month, $day, $hour = null, $minute = null, $second = null)
 	{
 		$this->assertSame($year, $d->year, 'Khayyam->year');
 		$this->assertSame($month, $d->month, 'Khayyam->month');
@@ -52,5 +53,29 @@ class TestFixture extends \PHPUnit_Framework_TestCase
 	protected function assertInstanceOfKhayyam($d)
 	{
 		$this->assertInstanceOf('Khayyam\Khayyam', $d);
+	}
+
+	protected function assertDateTime(DateTime $d, $year, $month, $day, $hour = null, $minute = null, $second = null)
+	{
+		$this->assertSame($year, (int)$d->format('Y'), 'DateTime->year');
+		$this->assertSame($month, (int)$d->format('n'), 'DateTime->month');
+		$this->assertSame($day, (int)$d->format('j'), 'DateTime->day');
+
+		if ($hour !== null) {
+			$this->assertSame($hour, (int)$d->format('G'), 'DateTime->hour');
+		}
+
+		if ($minute !== null) {
+			$this->assertSame($minute, (int)$d->format('i'), 'DateTime->minute');
+		}
+
+		if ($second !== null) {
+			$this->assertSame($second, (int)$d->format('s'), 'DateTime->second');
+		}
+	}
+
+	protected function assertInstanceOfDateTime($d)
+	{
+		$this->assertInstanceOf('Khayyam\DateTime', $d);
 	}
 }
