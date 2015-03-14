@@ -11,7 +11,7 @@
 
 use Khayyam\DateTime;
 
-class CreateTest extends TestFixture
+class CreateDateTimeTest extends TestFixture
 {
 	public function testCreateReturnsDatingInstance()
 	{
@@ -22,6 +22,12 @@ class CreateTest extends TestFixture
 	public function testCreateWithDefaults()
 	{
 		$d = new DateTime();
+		$this->assertSame(time(), $d->getTimeStamp());
+	}
+
+	public function testCreateWithEmptyTime()
+	{
+		$d = new DateTime('');
 		$this->assertSame(time(), $d->getTimeStamp());
 	}
 
@@ -61,12 +67,6 @@ class CreateTest extends TestFixture
 		$this->setExpectedException('InvalidArgumentException');
 		$d = DateTime::create(null, -5);
 	}
-
-	public function testCreateMonthWraps()
-	{
-		$d = DateTime::create(1394, 0, 1, 0, 0, 0);
-		$this->assertDateTime($d, 1393, 12, 1, 0, 0, 0);
-	}
 */
 	public function testCreateWithDay()
 	{
@@ -78,11 +78,6 @@ class CreateTest extends TestFixture
 	{
 		$this->setExpectedException('InvalidArgumentException');
 		$d = DateTime::create(null, null, -4);
-	}
-	public function testCreateDayWraps()
-	{
-		$d = DateTime::create(1394, 1, 40, 0, 0, 0);
-		$this->assertDateTime($d, 1394, 2, 9, 0, 0, 0);
 	}
 */
 	public function testCreateWithHourMinSec()
@@ -97,12 +92,6 @@ class CreateTest extends TestFixture
 		$d = DateTime::create(null, null, null, -1);
 	}
 
-	public function testCreateHourWraps()
-	{
-		$d = DateTime::create(1394, 1, 1, 24, 0, 0);
-		$this->assertDateTime($d, 1394, 1, 2, 0, 0, 0);
-	}
-
 	public function testCreateWithMinute()
 	{
 		$d = DateTime::create(null, null, null, null, 58);
@@ -113,11 +102,6 @@ class CreateTest extends TestFixture
 	{
 		$this->setExpectedException('InvalidArgumentException');
 		$d = DateTime::create(1394, 1, 1, 0, -2, 0);
-	}
-	public function testCreateMinuteWraps()
-	{
-		$d = DateTime::create(1394, 1, 1, 0, 62, 0);
-		$this->assertDateTime($d, 1394, 1, 1, 1, 2, 0);
 	}
 
 	public function testCreateWithSecond()
@@ -131,11 +115,7 @@ class CreateTest extends TestFixture
 		$this->setExpectedException('InvalidArgumentException');
 		$d = DateTime::create(null, null, null, null, null, -2);
 	}
-	public function testCreateSecondsWrap()
-	{
-		$d = DateTime::create(1394, 1, 1, 0, 0, 61);
-		$this->assertDateTime($d, 1394, 1, 1, 0, 1, 1);
-	}
+
 */
 	public function testCreateWithTimestampStyle()
 	{
@@ -143,10 +123,21 @@ class CreateTest extends TestFixture
 		$this->assertEquals(1426883400, $d->getTimeStamp());
 	}
 
+	public function testCreateWithDefaultDateTimeZone()
+	{
+		$d = new DateTime();
+		$this->assertSame('Asia/Tehran', $d->getTimezone()->getName());
+	}
+
+	public function testCreateWithNullDateTimeZone()
+	{
+		$d = new DateTime('now', null);
+		$this->assertSame('Asia/Tehran', $d->getTimezone()->getName());
+	}
+
 	public function testCreateWithDateTimeZone()
 	{
-		$d = new DateTime('1394-01-01 00:00:00', new \DateTimeZone('Asia/Tehran'));
-		$this->assertDateTime($d, 1394, 1, 1, 0, 0, 0);
+		$d = new DateTime('now', new \DateTimeZone('Asia/Tehran'));
 		$this->assertSame('Asia/Tehran', $d->getTimezone()->getName());
 	}
 
