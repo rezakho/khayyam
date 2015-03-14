@@ -58,14 +58,20 @@ class DateTime extends PhpDateTime
 
 	public function modify($time)
 	{
-		$time = (string)$time;
-
+		// now
 		if (empty($time) || $time === 'now')
 		{
 			$this->timestamp = time();
 
 			return $this;
 		}
+		// @1212132132
+		/*elseif (preg_match('#^@(\d+)$#', $time, $matched))
+		{
+			$this->timestamp = $matched[1];
+
+			return $this;
+		}*/
 
 		$parsed = date_parse($time);
 
@@ -83,6 +89,13 @@ class DateTime extends PhpDateTime
 		if ($this->hasRelativeTime($parsed))
 		{
 			$relativeTimestamp = $this->parseRelative($parsed);
+		}
+
+		if ($parsed['is_localtime'] !== false)
+		{
+			$this->timestamp = $relativeTimestamp;
+
+			return $this;
 		}
 
 		$this->timestamp = $timestamp + $relativeTimestamp;

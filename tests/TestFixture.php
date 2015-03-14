@@ -55,14 +55,22 @@ class TestFixture extends \PHPUnit_Framework_TestCase
 		$this->assertInstanceOf('Khayyam\Khayyam', $d);
 	}
 
-	protected function assertDateTime(DateTime $d, $year, $month, $day, $hour = null, $minute = null, $second = null)
+	protected function assertDateTime(DateTime $d, $year = null, $month = null, $day = null, $hour = null, $minute = null, $second = null)
 	{
-		$this->assertSame($year, (int)$d->format('Y'), 'DateTime->year');
-		$this->assertSame($month, (int)$d->format('n'), 'DateTime->month');
-		$this->assertSame($day, (int)$d->format('j'), 'DateTime->day');
+		if ($year !== null) {
+			$this->assertSame($year, (int)$d->format('Y'), 'DateTime->year');
+		}
 
+		if ($month !== null) {
+			$this->assertSame($month, (int)$d->format('m'), 'DateTime->month');
+		}
+
+		if ($day !== null) {
+			$this->assertSame($day, (int)$d->format('d'), 'DateTime->day');
+		}
+		
 		if ($hour !== null) {
-			$this->assertSame($hour, (int)$d->format('G'), 'DateTime->hour');
+			$this->assertSame($hour, (int)$d->format('H'), 'DateTime->hour');
 		}
 
 		if ($minute !== null) {

@@ -19,12 +19,6 @@ class CreateTest extends TestFixture
 		$this->assertTrue($d instanceof \DateTime);
 	}
 
-	public function testCreateByNowReturnsDatingInstance()
-	{
-		$d = new DateTime('now');
-		$this->assertTrue($d instanceof \DateTime);
-	}
-
 	public function testCreateWithDefaults()
 	{
 		$d = new DateTime();
@@ -37,25 +31,31 @@ class CreateTest extends TestFixture
 		$this->assertSame(time(), $d->getTimeStamp());
 	}
 
+	public function testCreateWithInvalidTimeType()
+	{
+		$this->setExpectedException('InvalidArgumentException');
+		$d = new DateTime(array());
+	}
+/*
 	public function testCreateWithInvalidYear()
 	{
 		$this->setExpectedException('InvalidArgumentException');
 		$d = new DateTime(-3);
 	}
-
+*/
 	public function testCreateWithYear()
 	{
 		$d = new DateTime('1394');
-		$this->assertSame(1394, (int)$d->format('Y'));
+		$this->assertDateTime($d, 1394);
 	}
-/*
+
 
 	public function testCreateWithMonth()
 	{
-		$d = DateTime::create(null, 3);
-		$this->assertSame(3, $d->month);
+		$d = new DateTime('1394-02');
+		$this->assertDateTime($d, null, 2);
 	}
-
+/*
 	public function testCreateWithInvalidMonth()
 	{
 		$this->setExpectedException('InvalidArgumentException');
@@ -67,13 +67,13 @@ class CreateTest extends TestFixture
 		$d = DateTime::create(1394, 0, 1, 0, 0, 0);
 		$this->assertDateTime($d, 1393, 12, 1, 0, 0, 0);
 	}
-
+*/
 	public function testCreateWithDay()
 	{
-		$d = DateTime::create(null, null, 21);
-		$this->assertSame(21, $d->day);
+		$d = new DateTime('1394-01-13');
+		$this->assertDateTime($d, null, null, 13);
 	}
-
+/*
 	public function testCreateWithInvalidDay()
 	{
 		$this->setExpectedException('InvalidArgumentException');
@@ -84,15 +84,13 @@ class CreateTest extends TestFixture
 		$d = DateTime::create(1394, 1, 40, 0, 0, 0);
 		$this->assertDateTime($d, 1394, 2, 9, 0, 0, 0);
 	}
-
-	public function testCreateWithHourAndDefaultMinSecToZero()
+*/
+	public function testCreateWithHourMinSec()
 	{
-		$d = DateTime::create(null, null, null, 14);
-		$this->assertSame(14, $d->hour);
-		$this->assertSame(0, $d->minute);
-		$this->assertSame(0, $d->second);
+		$d = new DateTime('1394-01-01 12:13:14');
+		$this->assertDateTime($d, null, null, null, 12, 13, 14);
 	}
-
+/*
 	public function testCreateWithInvalidHour()
 	{
 		$this->setExpectedException('InvalidArgumentException');
@@ -110,7 +108,7 @@ class CreateTest extends TestFixture
 		$d = DateTime::create(null, null, null, null, 58);
 		$this->assertSame(58, $d->minute);
 	}
-
+*//*
 	public function testCreateWithInvalidMinute()
 	{
 		$this->setExpectedException('InvalidArgumentException');
@@ -139,6 +137,12 @@ class CreateTest extends TestFixture
 		$this->assertDateTime($d, 1394, 1, 1, 0, 1, 1);
 	}
 */
+	public function testCreateWithTimestampStyle()
+	{
+		$d = new DateTime('@1426883400');
+		$this->assertEquals(1426883400, $d->getTimeStamp());
+	}
+
 	public function testCreateWithDateTimeZone()
 	{
 		$d = new DateTime('1394-01-01 00:00:00', new \DateTimeZone('Asia/Tehran'));

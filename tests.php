@@ -12,8 +12,10 @@ date_default_timezone_set('Asia/Tehran');
     //->modify('+36 month')
 //    ->format('c');
 
-$d = new Khayyam\DateTime('1394');
-echo $d->format('Y');
+//print_r(date_parse('@65 2016 +1 day'));exit;
+
+$d = new Khayyam\DateTime('@'.time().' +10 day');
+echo $d->format('Y-m-d H:i:s');
 exit;
 
 echo Khayyam\Khayyam::now()->addDay()->format('Y-m-d');
@@ -21,7 +23,7 @@ echo Khayyam\Khayyam::now()->addDay()->format('Y-m-d');
 exit;
 
 
-//print_r(date_parse('@1564165431'));exit;
+
 print_r(date_parse_from_format('Y-m-d i:s', '2290-02-31 00:12'));exit;
 
 
