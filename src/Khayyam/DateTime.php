@@ -6,6 +6,8 @@ use DateTime as PhpDateTime;
 use DateTimeZone;
 use DateInterval;
 
+//http://www.fourmilab.ch/documents/calendar/
+
 class DateTime extends PhpDateTime
 {
 	protected $timestamp;
